@@ -1,77 +1,71 @@
 <template>
-  <div id="app" class="container">
+  <div  class="container">
     <h1>The Time Value of Money Calculator</h1>
-    <form>
       <div class="row">
-        <div class="col-xs-6 col-sm-4 col-md-6 col-md-offset-3">
-          <h2>Please input your settings</h2>
-          <div class="form-group">
-            <label for="FV">Future Value</label>
-            <input
-              type="text"
-              id="future-value"
-              class="form-control"
-              v-model="tmvInputs.futurevalue">
+        <form>
+          <div class="col col-lg-6">
+            <h2>Please input your settings</h2>
+            <div class="form-group">
+              <label for="FV">Future Value</label>
+              <input
+                type="text"
+                id="future-value"
+                class="form-control"
+                v-model="tmvInputs.futurevalue">
+            </div>
+            <div class="form-group">
+              <label for="PV">Present Value</label>
+              <input 
+                type="text"
+                id="present-value"
+                class="form-control"
+                v-model="tmvInputs.presentvalue">
+            </div>
+            <div class="form-group">
+              <label for="rate">Interest Rate</label>
+              <input 
+                type="text"
+                id="rate"
+                class="form-control"
+                v-model="tmvInputs.rate">
+            </div>
+            <div class="form-group">
+              <label for="compoundingPeriods">Compounding Periods</label>
+              <input 
+                type="text"
+                id="compounding-periods"
+                class="form-control"
+                v-model="tmvInputs.compoundingPeriods">
+            </div>
+            <div class="form-group">
+              <label for="time">Time</label>
+              <input 
+                type="text"
+                id="time"
+                class="form-control"
+                v-model="tmvInputs.time">
+            </div>
+            <button
+              class="btn btn-primary" @click.prevent="calculateFV">
+              Calculate Future Value
+            </button>
+            <button
+              class="btn btn-primary" @click.prevent="calculatePV">
+              Calculate Present Value
+            </button>
+            <button
+              class="btn btn-primary" @click.prevent="calculateTime">
+              Calculate Time
+            </button>
           </div>
-          <div class="form-group">
-            <label for="PV">Present Value</label>
-            <input 
-              type="text"
-              id="present-value"
-              class="form-control"
-              v-model="tmvInputs.presentvalue">
-          </div>
-          <div class="form-group">
-            <label for="rate">Interest Rate</label>
-            <input 
-              type="text"
-              id="rate"
-              class="form-control"
-              v-model="tmvInputs.rate">
-          </div>
-          <div class="form-group">
-            <label for="compoundingPeriods">Compounding Periods</label>
-            <input 
-              type="text"
-              id="compounding-periods"
-              class="form-control"
-              v-model="tmvInputs.compoundingPeriods">
-          </div>
-          <div class="form-group">
-            <label for="time">Time</label>
-            <input 
-              type="text"
-              id="time"
-              class="form-control"
-              v-model="tmvInputs.time">
-          </div>
-        <div class="col-xs-6 col-sm-4 col-md-6 col-md-offset-3">
-          <animation-box></animation-box>
+        </form>
+        <div class="col col-lg-6">
+            <animation-box></animation-box>
         </div>
-        </div>
-        
-      </div>
-      <div class="row">
-        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-          <button
-            class="btn btn-primary" @click.prevent="calculateFV">
-            Calculate Future Value
-          </button>
-          <button
-            class="btn btn-primary" @click.prevent="calculatePV">
-            Calculate Present Value
-          </button>
-          <button
-            class="btn btn-primary" @click.prevent="calculateTime">
-            Calculate Time
-          </button>
-        </div>
-      </div>
-
-    </form>
-    
-
+    </div>
   </div>
+        
+    
 </template>
 
 <script>

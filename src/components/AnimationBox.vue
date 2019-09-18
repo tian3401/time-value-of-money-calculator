@@ -1,5 +1,7 @@
 <template>
-  <h1>This is where the animation will be placed</h1>
+  <div>
+    <h1>This is where the animation will be placed</h1>
+  </div>
 </template>
 
 <script>
@@ -17,6 +19,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  div{
+    height: auto;
+    width: auto; 
+  }
+</style>>
 
 </style>
