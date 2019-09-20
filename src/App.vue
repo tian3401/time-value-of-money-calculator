@@ -9,6 +9,7 @@
               <component :is= "selectedComponent" 
               @update:selectedComponent = "selectedComponent = $event"
               :tmvInputs ="tmvInputs"
+              @update:futurevalue = "tmvInputs.futurevalue = $event"
               ></component>
             </div>
             <div id="tmv-inputs" v-if = '!seen'>
@@ -19,7 +20,6 @@
                 id="future-value"
                 class="form-control"
                 v-model="tmvInputs.futurevalue"
-                @update:futurevalue = "tmvInputs.futurevalue = $event"
               >
             </div>
             <div class="form-group">
