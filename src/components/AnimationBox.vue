@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>This is where the animation will be placed</h1>
+    <h1>SVG animation goes here</h1>
   </div>
 </template>
 

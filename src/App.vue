@@ -1,17 +1,26 @@
 <template>
   <div  class="container">
-    <h1>The Time Value of Money Calculator</h1>
+    <h1 class="gochihandfont">{{heading}}</h1>
       <div class="row">
         <form>
           <div class="col col-lg-6">
-            <h2>Please input your settings</h2>
-            <div class="form-group">
+
+            <div class="form-group dynamic-asset">
+              <component :is= "selectedComponent" 
+              @update:selectedComponent = "selectedComponent = $event"
+              :tmvInputs ="tmvInputs"
+              ></component>
+            </div>
+            <div id="tmv-inputs" v-if = '!seen'>
+              <div class="form-group">
               <label for="FV">Future Value</label>
               <input
                 type="text"
                 id="future-value"
                 class="form-control"
-                v-model="tmvInputs.futurevalue">
+                v-model="tmvInputs.futurevalue"
+                @update:futurevalue = "tmvInputs.futurevalue = $event"
+              >
             </div>
             <div class="form-group">
               <label for="PV">Present Value</label>
@@ -45,6 +54,7 @@
                 class="form-control"
                 v-model="tmvInputs.time">
             </div>
+            </div>
             <button
               class="btn btn-primary" @click.prevent="calculateFV">
               Calculate Future Value
@@ -57,6 +67,10 @@
               class="btn btn-primary" @click.prevent="calculateTime">
               Calculate Time
             </button>
+            <button
+              class="btn btn-primary" @click.prevent="showTmvInputs">
+              Show TMV Inputs
+            </button>
           </div>
         </form>
         <div class="col col-lg-6">
@@ -64,27 +78,32 @@
         </div>
     </div>
   </div>
-        
-    
 </template>
 
 <script>
 import AnimationBox from './components/AnimationBox'
+import CashInfo from './components/CashInfo'
+import TimeDuration from './components/TimeDuration'
 
 export default {
   data () {
     return {
-      heading: 'Time Value of Money Calculator',
+      heading: 'The Money Calculator',
       tmvInputs: {
-        futurevalue: 1000,
-        presentvalue: 1000,
-        rate: '5',
-        compoundingPeriods: 1,
-        time: 1
-      }
+        futurevalue: null,
+        presentvalue: null,
+        rate: '',
+        compoundingPeriods: null,
+        time: null
+      },
+      seen: false,
+      selectedComponent: 'CashInfo'
     }
   },
   methods: {
+    showTmvInputs() {
+      console.log(this.tmvInputs)
+    },
     calculateFV() {
 
       let percentageRate = this.tmvInputs.rate / 100;
@@ -107,15 +126,23 @@ export default {
       this.tmvInputs.time = ((Math.log10(this.tmvInputs.futurevalue) - Math.log10(this.tmvInputs.presentvalue))/ Math.log10(1 + percentageRate)).toFixed(2);
 
       console.log('log of fv', Math.log10(this.tmvInputs.futurevalue), typeof(this.tmvInputs.futurevalue))
+    },
+    changeToTimeDuration() {
+      this.selectedComponent = 'TimeDuration'
     }
   },
   components: {
-    AnimationBox: AnimationBox
+    AnimationBox: AnimationBox,
+    CashInfo: CashInfo,
+    TimeDuration: TimeDuration
+
   }
 }
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Gochi+Hand|Luckiest+Guy&display=swap');
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   color: #2c3e50;
@@ -126,5 +153,15 @@ h1{
   font-weight: normal;
   text-align: center;
 } 
+
+.gochihandfont{
+  font-family:'Gochi Hand', serif
+}
+
+button{
+  margin: 10px;
+}
+
+
 
 </style>
