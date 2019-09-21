@@ -23,7 +23,6 @@ export default {
   props: {
     tmvInputs: Object,
     selectedComponent: [String, Object],
-    changeComponent: Function 
   },
   data() {
     return {
@@ -35,7 +34,6 @@ export default {
     handler() {
       this.updateComponent();
       this.updateInput(); 
-
     },
     updateComponent() {
       this.selectedComponent = 'TimeDuration'
@@ -44,6 +42,7 @@ export default {
     },
     updateInput() {
       this.$emit('update:futurevalue', this.endingCash)
+      this.$emit('update:presentvalue', this.startingCash)
       console.log(this.endingCash, this.tmvInputs);
     }
   }
@@ -51,7 +50,6 @@ export default {
 </script>
 
 <style>
-
   input{
     margin: 20px; 
   }

@@ -4,12 +4,15 @@
       <div class="row">
         <form>
           <div class="col col-lg-6">
-
             <div class="form-group dynamic-asset">
               <component :is= "selectedComponent" 
               @update:selectedComponent = "selectedComponent = $event"
               :tmvInputs ="tmvInputs"
               @update:futurevalue = "tmvInputs.futurevalue = $event"
+              @update:presentvalue = "tmvInputs.presentvalue = $event"
+              @update:timeDuration = "tmvInputs.time = $event"
+              @update:rate = "tmvInputs.rate = $event"
+              @update:compoundingPeriods = "tmvInputs.compoundingPeriods = $event"
               ></component>
             </div>
             <div id="tmv-inputs" v-if = '!seen'>
@@ -84,6 +87,9 @@
 import AnimationBox from './components/AnimationBox'
 import CashInfo from './components/CashInfo'
 import TimeDuration from './components/TimeDuration'
+import Rate from './components/Rate'
+import CompoundingPeriods from './components/CompoundingPeriods'
+import Results from './components/Results'
 
 export default {
   data () {
@@ -105,37 +111,32 @@ export default {
       console.log(this.tmvInputs)
     },
     calculateFV() {
-
       let percentageRate = this.tmvInputs.rate / 100;
       let compoundingFactor = this.tmvInputs.compoundingPeriods*this.tmvInputs.time;
     
       this.tmvInputs.futurevalue = (this.tmvInputs.presentvalue*(1 + (percentageRate/this.tmvInputs.compoundingPeriods))**(compoundingFactor)); 
-
     },
     calculatePV() {
-
       let percentageRate = this.tmvInputs.rate / 100;
       let compoundingFactor = this.tmvInputs.compoundingPeriods*this.tmvInputs.time;
 
       this.tmvInputs.presentvalue = this.tmvInputs.futurevalue / (1+ percentageRate /this.tmvInputs.compoundingPeriods)**(compoundingFactor); 
     },
     calculateTime() {
-      
       let percentageRate = this.tmvInputs.rate / 100; 
 
       this.tmvInputs.time = ((Math.log10(this.tmvInputs.futurevalue) - Math.log10(this.tmvInputs.presentvalue))/ Math.log10(1 + percentageRate)).toFixed(2);
 
       console.log('log of fv', Math.log10(this.tmvInputs.futurevalue), typeof(this.tmvInputs.futurevalue))
-    },
-    changeToTimeDuration() {
-      this.selectedComponent = 'TimeDuration'
     }
   },
   components: {
     AnimationBox: AnimationBox,
     CashInfo: CashInfo,
-    TimeDuration: TimeDuration
-
+    TimeDuration: TimeDuration,
+    Rate: Rate,
+    CompoundingPeriods: CompoundingPeriods,
+    Results: Results
   }
 }
 </script>
@@ -161,7 +162,5 @@ h1{
 button{
   margin: 10px;
 }
-
-
 
 </style>
