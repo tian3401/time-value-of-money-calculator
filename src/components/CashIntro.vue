@@ -7,8 +7,8 @@
     @change="onChange($event)"
     >
       <option selected>Choose Your Starting Point</option>
-      <option value="startingCash">Starting Cash</option>
-      <option value="endingCash">Ending Cash</option>
+      <option value="start">Starting Cash</option>
+      <option value="end">Ending Cash</option>
     </select>
     <button 
     class="btn btn-success"
@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import {eventBus} from '../main'
 export default {
   props: {
+    intro: String,
     tmvInputs: Object,
     selectedComponent: [String, Object],
   },
@@ -33,20 +33,12 @@ export default {
   },
   methods: {
     handler() {
-      this.updateComponent();
-      this.showStartingPoint(); 
-      this.emitMethodToBus();  
-    },
-    emitMethodToBus() {
-      eventBus.$emit('hideCashSelection', this.startPoint)
+      this.updateComponent(); 
     },
     onChange(event) {
       this.startPoint = event.target.value
-      console.log(this.startPoint)
-    },
-    showStartingPoint() {
-      // send class hide to sister component cashinfo 
-      this.hideCash = "hide"
+      this.$emit('update:intro',this.startPoint)
+      console.log(`this is the parent attr intro: ${this.intro}`, typeof(this.intro))
     },
     updateComponent() {
     this.selectedComponent = 'CashInfo';
