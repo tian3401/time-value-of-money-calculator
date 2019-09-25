@@ -1,14 +1,22 @@
 <template>
   <div>
     <h2 class="gochihandfont">Starting Cash or Ending Cash?</h2>
-    <input type="text" 
-    class="form-control" 
-    id="startingCash"
-    placeholder="starting cash"
-    v-if="start"
-    v-model="startingCash"
-    >
-    <input type="text" 
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">$</span>
+      </div>
+      <input 
+      type="number"
+      class="form-control" 
+      id="startingCash"
+      placeholder="starting cash"
+      v-if="start"
+      v-model="startingCash"
+      >
+    </div>
+    
+    <input 
+    type="number" 
     class="form-control" 
     id="endingCash"
     placeholder="ending cash"
@@ -18,13 +26,11 @@
     <button class="btn btn-success special-button" 
     @click.prevent ="handler"
     >cash it</button>
-    <p>{{tmvInputs}}</p>
-    <p>This is the value of intro prop {{intro}}</p>
-    <p>this is selected components {{selectedComponent}}</p>
   </div>
 </template>
 
 <script>
+import MaskedInput from 'vue-masked-input'
 export default {
   props: {
     intro: String,
@@ -69,16 +75,22 @@ export default {
       this.$emit('update:futurevalue', this.endingCash)
       this.$emit('update:presentvalue', this.startingCash)
       console.log(this.endingCash, this.tmvInputs);
+    },
+    onlyCurrency($event) {
+      //still working on this
     }
+  },
+  components: {
+    "masked-input":MaskedInput
   }
 }
 </script>
 
 <style>
-  input{
+  /* input{
     margin: 20px; 
-  }
-  .special-button{
+  } */
+  /* .special-button{
     margin: 20px
-  }
+  } */
 </style>
