@@ -17,6 +17,7 @@
 <script>
 export default {
   props: {
+    intro: String,
     tmvInputs: Object,
     selectedComponent: [String, Object]
   },
@@ -29,6 +30,7 @@ export default {
     handler() {
       this.updateComponent(); 
       this.updateInput(); 
+      this.getResult(); 
     },
     updateComponent() {
       this.selectedComponent = 'Results'
@@ -38,6 +40,15 @@ export default {
     updateInput() {
       this.$emit('update:compoundingPeriods', this.compoundingPeriods)
       console.log(this.compoundingPeriods, this.tmvInputs);
+    },
+    getResult() {
+      switch(this.intro) {
+        case 'start':
+          this.$parent.calculateFV();
+        case 'end':
+          this.$parent.calculatePV(); 
+      }
+       
     }
   }
 }

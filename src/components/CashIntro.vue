@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h3>Please select Starting or Ending Cash</h3>
+    <h3 class="gochihandfont">Please select Starting or Ending Cash</h3>
     <!-- Need to insert an animated icon svg  -->
     <select 
-    class="custom-select custom-select-lg mb-3" id="starting-point"
+    class="custom-select custom-select mb-3" id="starting-point"
     @change="onChange($event)"
     >
       <option selected>Choose Your Starting Point</option>

@@ -3,8 +3,8 @@
     <h1 class="gochihandfont">{{heading}}</h1>
       <div class="row">
         <form>
-          <div class="col col-lg-6">
-            <div class="form-group dynamic-asset">
+          <div class="col-lg ">
+            <div class="form-group dynamic-asset form-inline">
               <component :is= "selectedComponent" 
               @update:intro = "intro = $event"
               @update:selectedComponent = "selectedComponent = $event"
@@ -78,7 +78,7 @@
             </button>
           </div>
         </form>
-        <div class="col col-lg-6">
+        <div class="col-lg mybox">
             <animation-box></animation-box>
             
         </div>
@@ -120,15 +120,24 @@ export default {
     },
     calculateFV() {
       let percentageRate = this.tmvInputs.rate / 100;
-      let compoundingFactor = this.tmvInputs.compoundingPeriods*this.tmvInputs.time;
+      let periods = this.tmvInputs.compoundingPeriods;
+      let compoundingFactor = periods*this.tmvInputs.time;
+      let startingCash = this.tmvInputs.presentvalue;
+
+      this.tmvInputs.futurevalue = (startingCash*(1 + (percentageRate/periods))**(compoundingFactor)).toFixed(2); 
+
+      this.tmvInputs.presentvalue.toFixed(2);
     
-      this.tmvInputs.futurevalue = (this.tmvInputs.presentvalue*(1 + (percentageRate/this.tmvInputs.compoundingPeriods))**(compoundingFactor)); 
     },
     calculatePV() {
       let percentageRate = this.tmvInputs.rate / 100;
+      let periods = this.tmvInputs.compoundingPeriods; 
       let compoundingFactor = this.tmvInputs.compoundingPeriods*this.tmvInputs.time;
+      let endingCash = this.tmvInputs.futurevalue;
 
-      this.tmvInputs.presentvalue = this.tmvInputs.futurevalue / (1+ percentageRate /this.tmvInputs.compoundingPeriods)**(compoundingFactor); 
+      this.tmvInputs.presentvalue = (endingCash / (1+ percentageRate /periods)**(compoundingFactor)).toFixed(2);
+      
+      this.tmvInputs.futurevalue.toFixed(2); 
     },
     calculateTime() {
       let percentageRate = this.tmvInputs.rate / 100; 
@@ -170,6 +179,11 @@ h1{
 
 button{
   margin: 10px;
+}
+
+.mybox{
+  border-width: thick;
+  border-color: black;
 }
 
 </style>
