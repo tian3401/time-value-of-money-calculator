@@ -3,11 +3,13 @@
     <h2 class="gochihandfont">Starting Cash or Ending Cash?</h2>
     <input type="text" 
     class="form-control" 
+    id="startingCash"
     placeholder="starting cash"
     v-model="startingCash"
     >
     <input type="text" 
     class="form-control" 
+    id="endingCash"
     placeholder="ending cash"
     v-model="endingCash"
     >
@@ -19,6 +21,7 @@
 </template>
 
 <script>
+import {eventBus} from '../main'
 export default {
   props: {
     tmvInputs: Object,
@@ -30,10 +33,18 @@ export default {
       endingCash: null
     }
   },
+  mounted() {
+    eventBus.$on('hideCashSelection', function(startPoint) {
+      console.log('got the payload', startPoint); // doesnt work because doesn't mounted before I emit to eventBus
+    })
+  },
   methods: {
     handler() {
       this.updateComponent();
       this.updateInput(); 
+    },
+    showStartingPoint() {
+      //receive info from sister component cashintro 
     },
     updateComponent() {
       this.selectedComponent = 'TimeDuration'
