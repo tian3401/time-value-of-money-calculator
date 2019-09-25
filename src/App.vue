@@ -6,8 +6,10 @@
           <div class="col col-lg-6">
             <div class="form-group dynamic-asset">
               <component :is= "selectedComponent" 
+              @update:intro = "intro = $event"
               @update:selectedComponent = "selectedComponent = $event"
               :tmvInputs ="tmvInputs"
+              :intro="intro"
               @update:futurevalue = "tmvInputs.futurevalue = $event"
               @update:presentvalue = "tmvInputs.presentvalue = $event"
               @update:timeDuration = "tmvInputs.time = $event"
@@ -100,6 +102,7 @@ export default {
   data () {
     return {
       heading: 'The Money Calculator',
+      intro: '',
       tmvInputs: {
         futurevalue: null,
         presentvalue: null,

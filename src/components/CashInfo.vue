@@ -5,51 +5,65 @@
     class="form-control" 
     id="startingCash"
     placeholder="starting cash"
+    v-if="start"
     v-model="startingCash"
     >
     <input type="text" 
     class="form-control" 
     id="endingCash"
     placeholder="ending cash"
+    v-if="end"
     v-model="endingCash"
     >
     <button class="btn btn-success special-button" 
     @click.prevent ="handler"
     >cash it</button>
     <p>{{tmvInputs}}</p>
+    <p>This is the value of intro prop {{intro}}</p>
+    <p>this is selected components {{selectedComponent}}</p>
   </div>
 </template>
 
 <script>
-import {eventBus} from '../main'
 export default {
   props: {
+    intro: String,
     tmvInputs: Object,
     selectedComponent: [String, Object],
   },
   data() {
     return {
-      startingCash: null,
-      endingCash: null
+      start: undefined,
+      end: undefined
     }
   },
-  mounted() {
-    eventBus.$on('hideCashSelection', function(startPoint) {
-      console.log('got the payload', startPoint); // doesnt work because doesn't mounted before I emit to eventBus
-    })
+  mounted () {
+    console.log("cash info has been mounted")
+    this.updateIntro();      
   },
   methods: {
     handler() {
       this.updateComponent();
       this.updateInput(); 
-    },
-    showStartingPoint() {
-      //receive info from sister component cashintro 
+
     },
     updateComponent() {
       this.selectedComponent = 'TimeDuration'
       this.$emit('update:selectedComponent',this.selectedComponent)
       console.log(this.selectedComponent)
+    },
+    updateIntro() {
+      switch(this.intro) {
+        case 'start':
+          this.start = true
+          console.log(`value of start changed to true`)
+          break
+          
+        case 'end':
+          this.end = true
+          console.log(`value of end changed to true`)
+          break
+      }
     },
     updateInput() {
       this.$emit('update:futurevalue', this.endingCash)
