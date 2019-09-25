@@ -1,5 +1,9 @@
 <template>
-  <h3>Please select Starting or Ending Cash</h3>
+  <div>
+    <h3>Please select Starting or Ending Cash</h3>
+    
+  </div>
+  
   
 </template>
 

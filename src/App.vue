@@ -78,6 +78,7 @@
         </form>
         <div class="col col-lg-6">
             <animation-box></animation-box>
+            
         </div>
     </div>
   </div>
@@ -90,6 +91,9 @@ import TimeDuration from './components/TimeDuration'
 import Rate from './components/Rate'
 import CompoundingPeriods from './components/CompoundingPeriods'
 import Results from './components/Results'
+import CoffeeCup from './components/CoffeeCup'
+
+
 
 export default {
   data () {

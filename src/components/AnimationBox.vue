@@ -1,10 +1,12 @@
 <template>
   <div>
-    <h1>SVG animation goes here</h1>
+    
+    <CoffeeCup></CoffeeCup>
   </div>
 </template>
 
 <script>
+import CoffeeCup from './CoffeeCup'
 export default {
   data() {
     return {
@@ -14,7 +16,10 @@ export default {
   methods:{
     showAnimation() {
       return 
-    }
+    },
+  },
+  components: {
+  CoffeeCup: CoffeeCup
   }
 }
 </script>
