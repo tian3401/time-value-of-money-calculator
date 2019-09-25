@@ -86,6 +86,7 @@
 
 <script>
 import AnimationBox from './components/AnimationBox'
+import CashIntro from './components/CashIntro'
 import CashInfo from './components/CashInfo'
 import TimeDuration from './components/TimeDuration'
 import Rate from './components/Rate'
@@ -107,7 +108,7 @@ export default {
         time: null
       },
       seen: false,
-      selectedComponent: 'CashInfo'
+      selectedComponent: 'CashIntro'
     }
   },
   methods: {
@@ -136,6 +137,7 @@ export default {
   },
   components: {
     AnimationBox: AnimationBox,
+    CashIntro: CashIntro,
     CashInfo: CashInfo,
     TimeDuration: TimeDuration,
     Rate: Rate,
