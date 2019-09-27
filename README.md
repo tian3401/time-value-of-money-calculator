@@ -1,6 +1,6 @@
 # tvm_calculator
 
-> A time value of money calculator that helps visualize the relationship of money and time
+> A time value of money calculator that helps visualize the relationship of money and time while having a nice cup of coffee
 
 ## Build Setup
 
