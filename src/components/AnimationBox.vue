@@ -1,7 +1,8 @@
 <template>
   <div>
     
-    <CoffeeCup></CoffeeCup>
+    <!-- <CoffeeCup></CoffeeCup> -->
+    <img class="coffee" src="../assets/large-coffee-cup.gif" alt="cup of coffee filling up">
   </div>
 </template>
 
@@ -29,6 +30,9 @@ export default {
     height: auto;
     width: auto; 
   }
+
+  .coffee{
+    width: 80%;
+  }
 </style>>
 
-</style>

@@ -1,5 +1,5 @@
 <template>
-  <div  class="container">
+  <div  class="container-fluid">
     <h1 class="gochihandfont">{{heading}}</h1>
       <div class="row">
         <form>
@@ -161,6 +161,10 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Gochi+Hand|Luckiest+Guy&display=swap');
+
+/* .container-fluid{
+  background-color:skyblue
+} */
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
