@@ -95,7 +95,7 @@ import Rate from './components/Rate'
 import CompoundingPeriods from './components/CompoundingPeriods'
 import Results from './components/Results'
 import CoffeeCup from './components/CoffeeCup'
-
+import Intro from './components/Start'
 
 
 export default {
@@ -111,7 +111,7 @@ export default {
         time: null
       },
       seen: false,
-      selectedComponent: 'CashIntro'
+      selectedComponent: 'Intro'
     }
   },
   methods: {
@@ -148,6 +148,7 @@ export default {
     }
   },
   components: {
+    Intro: Intro,
     AnimationBox: AnimationBox,
     CashIntro: CashIntro,
     CashInfo: CashInfo,
