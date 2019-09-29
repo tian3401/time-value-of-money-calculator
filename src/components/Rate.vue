@@ -4,7 +4,7 @@
       <h2 class="gochihandfont">How fast will this money grow?</h2>
       <input type="text"
       class="form-control"
-      placeholder="rate"
+      placeholder="rate of growth"
       v-model="rate"
       >
       <button 

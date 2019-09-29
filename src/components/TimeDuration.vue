@@ -4,7 +4,7 @@
   <input 
   type="text" 
   class="form-control" 
-  placeholder="time duration"
+  placeholder="number of years"
   v-model="timeDuration"
   >
   <button 

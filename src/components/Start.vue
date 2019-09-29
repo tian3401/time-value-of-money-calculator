@@ -1,9 +1,15 @@
 <template>
   <div>
-    <h3>Welcome!</h3>
-    <input type="text" placeholder="What's your name?">
-    <button>Let's Get Started</button>
-    <img src='../assets/Green-Coin-Transparent.gif' alt="green coin rotating">
+    
+    <!-- <input type="text" placeholder="What's your name?">  -->
+    <button
+      @click.prevent="handler"
+    >Let's Get Started</button> 
+    <div>
+      <img id="green-coin" src='../assets/Green-Coin-Transparent.gif' alt="green coin rotating">
+    </div>
+    
+   
   </div>
 </template>
 
@@ -13,11 +19,25 @@ export default {
     return {
 
     }
+  },
+  methods: {
+    handler() {
+      this.updateComponent(); 
+    },
+    updateComponent() {
+    this.selectedComponent = 'CashIntro';
+    this.$emit('update:selectedComponent', this.selectedComponent);
+    }
   }
 }
 </script>
 
 <style scoped>
+
+#green-coin{
+  margin: 20px auto;
+  width: 200px;
+}
 
 input{
   margin: 0px;
@@ -36,18 +56,23 @@ input [type="text"]
 
 button {
   margin: 0px;
-  padding: 2px;
+  padding: 15px;
   background-color:#007bff;
   border: none;
   display: inline;
   position: relative;
-  border-radius: 0px 25px 25px 0px;
+  border-radius: 25px;
+
   cursor: pointer;
   margin: 4px, 2px;
   font-size: 25px;
   color: white;
   box-sizing: border-box;
   transition: 2s;
+}
+
+button:hover {
+  background-color: green;
 }
 
 </style>
