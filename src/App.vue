@@ -1,87 +1,89 @@
 <template>
-  <div  class="container-fluid">
-    <h1 class="gochihandfont">{{heading}}</h1>
-      <div class="row">
-        <form>
-          <div class="col-lg ">
-            <div class="form-group dynamic-asset form-inline">
-              <component :is= "selectedComponent" 
-              @update:intro = "intro = $event"
-              @update:selectedComponent = "selectedComponent = $event"
-              :tmvInputs ="tmvInputs"
-              :intro="intro"
-              @update:futurevalue = "tmvInputs.futurevalue = $event"
-              @update:presentvalue = "tmvInputs.presentvalue = $event"
-              @update:timeDuration = "tmvInputs.time = $event"
-              @update:rate = "tmvInputs.rate = $event"
-              @update:compoundingPeriods = "tmvInputs.compoundingPeriods = $event"
-              ></component>
-            </div>
-            <div id="tmv-inputs" v-if = '!seen'>
+  <div  class="container">
+    <div class="row card text-center">
+        <h1 class="gochihandfont card-header">{{heading}}</h1>
+        <div class="card-body">
+          <form>
+            <div class="col-lg">
+              <div class="form-group dynamic-asset ">
+                <component :is= "selectedComponent"
+                @update:intro = "intro = $event"
+                @update:selectedComponent = "selectedComponent = $event"
+                :tmvInputs ="tmvInputs"
+                :intro="intro"
+                @update:futurevalue = "tmvInputs.futurevalue = $event"
+                @update:presentvalue = "tmvInputs.presentvalue = $event"
+                @update:timeDuration = "tmvInputs.time = $event"
+                @update:rate = "tmvInputs.rate = $event"
+                @update:compoundingPeriods = "tmvInputs.compoundingPeriods = $event"
+                ></component>
+              </div>
+              <div id="tmv-inputs" v-if = 'seen'>
+                <div class="form-group">
+                <label for="FV">Future Value</label>
+                <input
+                  type="text"
+                  id="future-value"
+                  class="form-control"
+                  v-model="tmvInputs.futurevalue"
+                >
+              </div>
               <div class="form-group">
-              <label for="FV">Future Value</label>
-              <input
-                type="text"
-                id="future-value"
-                class="form-control"
-                v-model="tmvInputs.futurevalue"
-              >
+                <label for="PV">Present Value</label>
+                <input 
+                  type="text"
+                  id="present-value"
+                  class="form-control"
+                  v-model="tmvInputs.presentvalue">
+              </div>
+              <div class="form-group">
+                <label for="rate">Interest Rate</label>
+                <input 
+                  type="text"
+                  id="rate"
+                  class="form-control"
+                  v-model="tmvInputs.rate">
+              </div>
+              <div class="form-group">
+                <label for="compoundingPeriods">Compounding Periods</label>
+                <input 
+                  type="text"
+                  id="compounding-periods"
+                  class="form-control"
+                  v-model="tmvInputs.compoundingPeriods">
+              </div>
+              <div class="form-group">
+                <label for="time">Time</label>
+                <input 
+                  type="text"
+                  id="time"
+                  class="form-control"
+                  v-model="tmvInputs.time">
+              </div>
+              
+              <button
+                class="btn btn-primary" @click.prevent="calculateFV">
+                Calculate Future Value
+              </button>
+              <button
+                class="btn btn-primary" @click.prevent="calculatePV">
+                Calculate Present Value
+              </button>
+              <button
+                class="btn btn-primary" @click.prevent="calculateTime">
+                Calculate Time
+              </button>
+              <button
+                class="btn btn-primary" @click.prevent="showTmvInputs">
+                Show TMV Inputs
+              </button>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="PV">Present Value</label>
-              <input 
-                type="text"
-                id="present-value"
-                class="form-control"
-                v-model="tmvInputs.presentvalue">
-            </div>
-            <div class="form-group">
-              <label for="rate">Interest Rate</label>
-              <input 
-                type="text"
-                id="rate"
-                class="form-control"
-                v-model="tmvInputs.rate">
-            </div>
-            <div class="form-group">
-              <label for="compoundingPeriods">Compounding Periods</label>
-              <input 
-                type="text"
-                id="compounding-periods"
-                class="form-control"
-                v-model="tmvInputs.compoundingPeriods">
-            </div>
-            <div class="form-group">
-              <label for="time">Time</label>
-              <input 
-                type="text"
-                id="time"
-                class="form-control"
-                v-model="tmvInputs.time">
-            </div>
-            </div>
-            <button
-              class="btn btn-primary" @click.prevent="calculateFV">
-              Calculate Future Value
-            </button>
-            <button
-              class="btn btn-primary" @click.prevent="calculatePV">
-              Calculate Present Value
-            </button>
-            <button
-              class="btn btn-primary" @click.prevent="calculateTime">
-              Calculate Time
-            </button>
-            <button
-              class="btn btn-primary" @click.prevent="showTmvInputs">
-              Show TMV Inputs
-            </button>
-          </div>
-        </form>
-        <div class="col-lg mybox">
-            <animation-box></animation-box>
-            
-        </div>
+          </form>
+          <!-- <div class="col-lg mybox">
+              <animation-box></animation-box>
+          </div> -->
+      </div>
     </div>
   </div>
 </template>
@@ -178,6 +180,10 @@ h1{
   text-align: center;
 } 
 
+.card{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
 .gochihandfont{
   font-family:'Gochi Hand', serif
 }
@@ -187,6 +193,7 @@ button{
 }
 
 .mybox{
+  padding: 0px;
   border-width: thick;
   border-color: black;
 }

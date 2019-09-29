@@ -3,7 +3,7 @@
     <h2 class="gochihandfont">How often will interest be reinvested?</h2>
     <input
     class="form-control"
-    placeholder="compounding periods"
+    placeholder="compounding periods per year"
     type="text"
     v-model="compoundingPeriods"
     >
