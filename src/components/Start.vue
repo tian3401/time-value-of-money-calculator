@@ -1,15 +1,11 @@
 <template>
   <div>
-    
-    <!-- <input type="text" placeholder="What's your name?">  -->
-    <button
-      @click.prevent="handler"
-    >Let's Get Started</button> 
     <div>
       <img id="green-coin" src='../assets/Green-Coin-Transparent.gif' alt="green coin rotating">
     </div>
-    
-   
+    <button
+      @click.prevent="handler"
+    >Press Me</button> 
   </div>
 </template>
 
@@ -61,7 +57,7 @@ button {
   border: none;
   display: inline;
   position: relative;
-  border-radius: 25px;
+  border-radius: 15px;
 
   cursor: pointer;
   margin: 4px, 2px;
@@ -74,5 +70,4 @@ button {
 button:hover {
   background-color: green;
 }
-
 </style>

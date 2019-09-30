@@ -44,5 +44,4 @@ props: {
 </script>
 
 <style>
-
 </style>
