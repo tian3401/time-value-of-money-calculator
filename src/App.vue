@@ -165,10 +165,6 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css?family=Gochi+Hand|Luckiest+Guy&display=swap');
 
-/* .container-fluid{
-  background-color:skyblue
-} */
-
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   color: #2c3e50;

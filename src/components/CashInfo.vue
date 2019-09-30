@@ -13,9 +13,7 @@
       v-if="start"
       v-model="startingCash"
       >
-    </div>
-    
-    <input 
+      <input 
     type="number" 
     class="form-control" 
     id="endingCash"
@@ -23,7 +21,8 @@
     v-if="end"
     v-model="endingCash"
     >
-    <button class="btn btn-success special-button" 
+    </div>
+    <button class="btn btn-success" 
     @click.prevent ="handler"
     >cash it</button>
   </div>
@@ -87,10 +86,4 @@ export default {
 </script>
 
 <style>
-  /* input{
-    margin: 20px; 
-  } */
-  /* .special-button{
-    margin: 20px
-  } */
 </style>
